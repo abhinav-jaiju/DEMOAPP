@@ -1,0 +1,127 @@
+<!-- Template-Drivern Form -->
+
+<form name ="empfomr" #form="ngForm" autocomplete="off" (ngSubmit) = "onSubmit(form)">
+    <!--Employee ID Hidden-->
+    <input type="hidden" name="EmpId" [(ngModel)] = "employeeService.formData.EmpId" >
+
+    <!-- Employee Name-->
+    <div class="form-group">
+        <label>Full Name :  </label>
+        <input type="text" name = "EmpName"
+        #EmpName = "ngModel"
+        [(ngModel)] = "employeeService.formData.EmpName"
+        class="form-control"
+        placeholder="Enter Full Name"
+        required minlength="5" maxlength="25"
+        [ngClass] = "{'is-invalid': EmpName.touched && EmpName.invalid}"/>
+        <!--Validation-->
+        <div class="validation-error" *ngIf = "EmpName.touched && EmpName.invalid">
+           
+            <div *ngIf = "EmpName.errors.required">
+                 Name is required
+            </div>
+        </div>
+    </div>
+
+    <!--Designation-->
+    <div class="form-group">
+        <label>Designation :  </label>
+        <input type="text" name = "Designation"
+        #Designation = "ngModel"
+        [(ngModel)] = "employeeService.formData.Designation"
+        class="form-control"
+        placeholder="Enter Designation"
+        required minlength="5" maxlength="25"
+        [ngClass] = "{'is-invalid': Designation.touched && Designation.invalid}"/>
+        <!--Validation-->
+        <div class="validation-error" *ngIf = "Designation.touched && Designation.invalid">
+           
+            <div *ngIf = "Designation.errors.required">
+                 Designation required
+            </div>
+        </div>
+    </div>
+
+
+    <!--Date of Joining-->
+    <div class="form-group">
+        <label>Designation :  </label>
+        <input type="date" name = "DateOfJoining"
+        #DateOfJoining = "ngModel"
+        [(ngModel)] = "employeeService.formData.DateOfJoining"
+        class="form-control"
+        placeholder="Enter DateOfJoining"
+        required minlength="5" maxlength="25"
+        [ngClass] = "{'is-invalid': DateOfJoining.touched && DateOfJoining.invalid}"/>
+        <!--Validation-->
+        <div class="validation-error" *ngIf = "DateOfJoining.touched && DateOfJoining.invalid">
+           
+            <div *ngIf = "DateOfJoining.errors.required">
+                 Date of Joining required !
+            </div>
+        </div>
+    </div>
+
+    <!--Contact-->
+    <div class="form-group">
+        <label>Contact :  </label>
+        <input type="text" name = "Contact"
+        #Contact = "ngModel"
+        [(ngModel)] = "employeeService.formData.Contact"
+        class="form-control"
+        placeholder="Enter Contact"
+        required minlength="10" maxlength="10"
+        [ngClass] = "{'is-invalid': Contact.touched && Contact.invalid}"/>
+        <!--Validation-->
+        <div class="validation-error" *ngIf = "Contact.touched && Contact.invalid">
+           
+            <div *ngIf = "Contact.errors.required">
+                 Contact required
+            </div>
+        </div>
+    </div>
+
+    <!--Department dropdown-->
+    <div class="form-group">
+        <label>Department :  </label>
+        <select name="DepartmentId" id="DepartmentId"
+        class="form-control"
+        #DepartmentId = "ngModel"
+        required
+        [(ngModel)] = "employeeService.formData.DepartmentId"
+        >
+        <option value="0" disabled> Select Department</option>
+        <option *ngFor = " let dept of employeeService.departments"
+        value="{{dept.DepartmentId}}">{{dept.DepartmentName}}
+        </option>
+        </select>
+        <!--Validation-->
+        <div class="validation-error" *ngIf = "DepartmentId.touched && DepartmentId.invalid">
+           
+            <div *ngIf = "DepartmentId.errors.required">
+                 Department required
+            </div>
+        </div>
+    </div>
+
+    <!--IsActive-->
+    <div class="form-group">
+        <div class="form-check">
+            <label class = "form-check-label">IsActive</label>
+            <input type="checkbox" name="IsActive" id="IsActive"
+            #IsActive = "ngModel"
+            [(ngModel)] = "employeeService.formData.IsActive"
+            class="form-check-input"
+            >
+        </div>
+    </div>
+
+    <!--Submit-->
+    <br>
+    <div class="form-group">
+        <button type="submit" 
+        class="btn btn-lg btn-primary form-control"
+        [disabled] = "!(form.valid && form.dirty)">Submit</button>
+    </div>
+
+</form>

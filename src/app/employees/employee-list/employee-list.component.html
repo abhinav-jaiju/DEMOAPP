@@ -1,0 +1,51 @@
+
+<div class="header">
+    <div class="form-control">
+        <!--Search functionality-->
+        <input type="text" class="form-control" placeholder="Search text here..."[(ngModel)]="filter" >
+    </div>
+    <!--
+        [] --- property binding
+        () --- event binding 
+        ([])--- banana box for event and property --([ngModel])
+    -->
+    <a [routerLink]="" class="btn btn-outline-secondary" style="float: right; margin-top: 10px; margin-bottom: 10px;"> Add Employee</a>
+</div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Contact</th>
+                <th>Designation</th>
+                <th>IsActive</th>
+                <th>Date Of Joining</th>
+                <th>Department Id</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor= "let emp of employeeService.employees |filter: filter | paginate :{ itemsPerPage: 4, currentPage: page}">
+                <td>{{emp.EmpId}}</td>
+                <td>{{emp.EmpName}}</td>
+                <td>{{emp.Contact}}</td>
+                <td>{{emp.Designation}}</td>
+                <td>{{emp.IsActive}}</td>
+                <td>{{emp.DateOfJoining}}</td>
+                <td>{{emp.DepartmentId}}</td>
+                <td>
+                    <button class="btn btn-sm btn-info" (click)="updateEmployee(emp.EmpId)"> Edit </button>
+                    &nbsp;
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteEmployee(emp.EmpId)"> X </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <!--Pageination footer-->
+        <pagination-controls (pageChange) = "page = ($event)"></pagination-controls>
+    </div>
+
+    
