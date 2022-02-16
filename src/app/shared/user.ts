@@ -5,4 +5,5 @@ export class User {
     UserEmail : string = '';
     UserContact : number = 0;
     RoleId : number = 0 ;
+    
 }

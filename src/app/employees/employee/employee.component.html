@@ -1,6 +1,6 @@
 <!-- Template-Drivern Form -->
 
-<form name ="empfomr" #form="ngForm" autocomplete="off" (ngSubmit) = "onSubmit(form)">
+<form name ="empform" #form="ngForm" autocomplete="off" (ngSubmit) = "onSubmit(form)">
     <!--Employee ID Hidden-->
     <input type="hidden" name="EmpId" [(ngModel)] = "employeeService.formData.EmpId" >
 

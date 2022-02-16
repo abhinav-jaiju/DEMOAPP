@@ -22,7 +22,7 @@ export class AuthService {
   public loginVerify(user : User){
     //calling web service and passing username and password
     console.log(user.UserName);
-    return this.httpClient.get(environment.roleUrl+"/api/user/search/"+user.UserName+"&"+user.UserPassword);
+    return this.httpClient.get(environment.roleUrl+"/api/user/login/"+user.UserName+"&"+user.UserPassword);
   }
 
   //logout

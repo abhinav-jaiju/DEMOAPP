@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/shared/employee.service';
 
 
@@ -13,7 +14,8 @@ export class EmployeeListComponent implements OnInit {
   page: number = 1;
   filter: string;
 
-  constructor(public employeeService : EmployeeService) { }
+  constructor(public employeeService : EmployeeService,
+    private router : Router) { }
 
     ngOnInit(): void {
     console.log("Welcome to LifeCycle Hook");
@@ -41,6 +43,7 @@ export class EmployeeListComponent implements OnInit {
     updateEmployee(empId :number){
     console.log(empId);
     // navigate to edit form with selected employee details
+    this.router.navigate(['employee',empId])
     }
 
     //Delete Emplyee
@@ -55,8 +58,5 @@ export class EmployeeListComponent implements OnInit {
         }
       );
     }
-     }
-
-
-
   }
+}
